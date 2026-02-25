@@ -10,7 +10,28 @@ const EduPlatform = () => {
   const [showContactForm, setShowContactForm] = useState(false);
 
   const getText = (key) => {
-   
+   const texts = {
+  en: {
+    appName: 'LearnHub',
+    tagline: 'Empower Your Future',
+    home: 'Home',
+    courses: 'Courses',
+    about: 'About Us',
+    // ... 他のテキスト ...
+    
+    youtubeTitle: 'Learn on YouTube',  ← ここに追加すべき
+    youtubeDescription: 'Watch free educational videos...',
+    visitYoutube: 'Visit YouTube Channel',
+    subscriberCount: '945+ subscribers...'
+  },
+  ja: {
+    appName: 'LearnHub',
+    // ...
+  },
+  km: {
+    // ...
+  }
+};
   visitYoutube: { 
     en: 'Visit YouTube Channel', 
     ja: 'YouTubeチャンネルを見る', 
