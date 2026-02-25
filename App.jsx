@@ -184,7 +184,21 @@ const EduPlatform = () => {
             </div>
           </div>
         )}
-
+        {/* YouTube Channel Section */}
+<div className="bg-white p-10 rounded-3xl shadow-xl mb-16 text-center">
+  <h2 className="text-5xl font-bold mb-6">{getText('youtubeTitle')}</h2>
+  <p className="text-xl mb-8 text-gray-600">{getText('youtubeDescription')}</p>
+  <a 
+    href="https://www.youtube.com/@vanngekli374" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl hover:bg-red-700 transition text-xl font-bold"
+  >
+    <Video className="w-6 h-6" />
+    {getText('visitYoutube')}
+  </a>
+  <p className="mt-4 text-gray-500">{getText('subscriberCount')}</p>
+</div>
         {currentPage === 'courses' && (
           <div>
             <h1 className="text-5xl font-bold mb-10">{getText('courses')}</h1>
