@@ -10,16 +10,7 @@ const EduPlatform = () => {
   const [showContactForm, setShowContactForm] = useState(false);
 
   const getText = (key) => {
-    const texts = {　youtubeTitle: { 
-    en: 'Learn on YouTube', 
-    ja: 'YouTubeで学ぶ', 
-    km: 'រៀននៅលើយូធូប' 
-  },
-  youtubeDescription: { 
-    en: 'Watch free educational videos on our YouTube channel', 
-    ja: 'YouTubeチャンネルで無料の教育動画を視聴', 
-    km: 'មើលវីដេអូអប់រំឥតគិតថ្លៃនៅលើបណ្តាញយូធូបរបស់យើង' 
-  },
+   
   visitYoutube: { 
     en: 'Visit YouTube Channel', 
     ja: 'YouTubeチャンネルを見る', 
