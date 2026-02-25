@@ -117,11 +117,26 @@ const EduPlatform = () => {
               <BookOpen className="w-8 h-8 text-blue-600" />
               <span className="text-2xl font-bold">{getText('appName')}</span>
             </div>
-            <nav className="hidden md:flex gap-6">
-              <button onClick={() => setCurrentPage('home')} className={currentPage === 'home' ? 'text-blue-600 font-semibold' : 'text-gray-700'}>{getText('home')}</button>
-              <button onClick={() => setCurrentPage('courses')} className={currentPage === 'courses' || currentPage === 'detail' ? 'text-blue-600 font-semibold' : 'text-gray-700'}>{getText('courses')}</button>
-              <button onClick={() => setCurrentPage('about')} className={currentPage === 'about' ? 'text-blue-600 font-semibold' : 'text-gray-700'}>{getText('about')}</button>
-            </nav>
+           <nav className="hidden md:flex gap-6 items-center">
+  <button onClick={() => setCurrentPage('home')} className={currentPage === 'home' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+    {getText('home')}
+  </button>
+  <button onClick={() => setCurrentPage('courses')} className={currentPage === 'courses' || currentPage === 'detail' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+    {getText('courses')}
+  </button>
+  <button onClick={() => setCurrentPage('about')} className={currentPage === 'about' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+    {getText('about')}
+  </button>
+  <a 
+    href="https://www.youtube.com/@vanngekli374" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition flex items-center gap-2"
+  >
+    <Video className="w-5 h-5" />
+    YouTube
+  </a>
+</nav>
             <div className="flex gap-2">
               <button onClick={() => setLanguage('en')} className={language === 'en' ? 'px-3 py-1 bg-blue-600 text-white rounded' : 'px-3 py-1 text-gray-600'}>EN</button>
               <button onClick={() => setLanguage('ja')} className={language === 'ja' ? 'px-3 py-1 bg-blue-600 text-white rounded' : 'px-3 py-1 text-gray-600'}>日本語</button>
