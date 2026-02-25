@@ -10,7 +10,26 @@ const EduPlatform = () => {
   const [showContactForm, setShowContactForm] = useState(false);
 
   const getText = (key) => {
-    const texts = {
+    const texts = {　youtubeTitle: { 
+    en: 'Learn on YouTube', 
+    ja: 'YouTubeで学ぶ', 
+    km: 'រៀននៅលើយូធូប' 
+  },
+  youtubeDescription: { 
+    en: 'Watch free educational videos on our YouTube channel', 
+    ja: 'YouTubeチャンネルで無料の教育動画を視聴', 
+    km: 'មើលវីដេអូអប់រំឥតគិតថ្លៃនៅលើបណ្តាញយូធូបរបស់យើង' 
+  },
+  visitYoutube: { 
+    en: 'Visit YouTube Channel', 
+    ja: 'YouTubeチャンネルを見る', 
+    km: 'ទស្សនាបណ្តាញយូធូប' 
+  },
+  subscriberCount: { 
+    en: '945+ subscribers • Join our learning community!', 
+    ja: '945人以上の登録者 • 学習コミュニティに参加！', 
+    km: 'អ្នកជាវ 945+ នាក់ • ចូលរួមសហគមន៍សិក្សារបស់យើង!' 
+  },
       en: {
         appName: 'LearnHub', tagline: 'Empower Your Future', subtitle: 'Access world-class education',
         home: 'Home', courses: 'Courses', about: 'About Us', search: 'Search...', all: 'All',
