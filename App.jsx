@@ -10,38 +10,7 @@ const EduPlatform = () => {
   const [showContactForm, setShowContactForm] = useState(false);
 
   const getText = (key) => {
-   const texts = {
-  en: {
-    appName: 'LearnHub',
-    tagline: 'Empower Your Future',
-    home: 'Home',
-    courses: 'Courses',
-    about: 'About Us',
-    // ... 他のテキスト ...
-    
-    youtubeTitle: 'Learn on YouTube',  ← ここに追加すべき
-    youtubeDescription: 'Watch free educational videos...',
-    visitYoutube: 'Visit YouTube Channel',
-    subscriberCount: '945+ subscribers...'
-  },
-  ja: {
-    appName: 'LearnHub',
-    // ...
-  },
-  km: {
-    // ...
-  }
-};
-  visitYoutube: { 
-    en: 'Visit YouTube Channel', 
-    ja: 'YouTubeチャンネルを見る', 
-    km: 'ទស្សនាបណ្តាញយូធូប' 
-  },
-  subscriberCount: { 
-    en: '945+ subscribers • Join our learning community!', 
-    ja: '945人以上の登録者 • 学習コミュニティに参加！', 
-    km: 'អ្នកជាវ 945+ នាក់ • ចូលរួមសហគមន៍សិក្សារបស់យើង!' 
-  },
+    const texts = {
       en: {
         appName: 'LearnHub', tagline: 'Empower Your Future', subtitle: 'Access world-class education',
         home: 'Home', courses: 'Courses', about: 'About Us', search: 'Search...', all: 'All',
@@ -59,7 +28,11 @@ const EduPlatform = () => {
         reason3: 'Flexible Learning', reason3Text: 'Study at your own pace',
         reason4: 'Global Community', reason4Text: 'Connect with learners worldwide',
         joinCommunity: 'Join Our Community', startJourney: 'Start your learning journey',
-        backToCourses: 'Back to Courses'
+        backToCourses: 'Back to Courses',
+        youtubeTitle: 'Nippon No Omoi',
+        youtubeDescription: 'Learn about Japan culture, travel, technology, daily life in Japan',
+        visitYoutube: 'Visit YouTube Channel',
+        subscriberCount: '945+ subscribers • Join our learning community!'
       },
       ja: {
         appName: 'LearnHub', tagline: '未来を切り開く', subtitle: '世界クラスの教育',
@@ -78,7 +51,11 @@ const EduPlatform = () => {
         reason3: '柔軟な学習', reason3Text: '自分のペースで',
         reason4: 'グローバル', reason4Text: '世界中とつながる',
         joinCommunity: 'コミュニティに参加', startJourney: '学習を始めましょう',
-        backToCourses: 'コース一覧に戻る'
+        backToCourses: 'コース一覧に戻る',
+        youtubeTitle: 'Nippon No Omoi',
+        youtubeDescription: '日本の文化・旅行・テクノロジー・日常生活を学ぼう',
+        visitYoutube: 'YouTubeチャンネルを見る',
+        subscriberCount: '945人以上の登録者 • 学習コミュニティに参加！'
       },
       km: {
         appName: 'LearnHub', tagline: 'ពង្រឹងអនាគត', subtitle: 'ការអប់រំពិភពលោក',
@@ -95,7 +72,11 @@ const EduPlatform = () => {
         reason2: 'គ្រូជំនាញ', reason2Text: 'រៀនពីអ្នកជំនាញ',
         reason3: 'រៀនបត់បែន', reason3Text: 'គ្រប់ពេលវេលា',
         reason4: 'សហគមន៍', reason4Text: 'ភ្ជាប់ពិភពលោក',
-        joinCommunity: 'ចូលរួម', startJourney: 'ចាប់ផ្តើមថ្ងៃនេះ', backToCourses: 'ត្រលប់'
+        joinCommunity: 'ចូលរួម', startJourney: 'ចាប់ផ្តើមថ្ងៃនេះ', backToCourses: 'ត្រលប់',
+        youtubeTitle: 'Nippon No Omoi',
+        youtubeDescription: 'រៀនអំពីវប្បធម៌ ការធ្វើដំណើរ បច្ចេកវិទ្យា និងជីវិតប្រចាំថ្ងៃនៅប្រទេសជប៉ុន',
+        visitYoutube: 'ទស្សនាបណ្តាញយូធូប',
+        subscriberCount: 'អ្នកជាវ 945+ នាក់ • ចូលរួមសហគមន៍សិក្សារបស់យើង!'
       }
     };
     return texts[language][key] || key;
@@ -148,26 +129,26 @@ const EduPlatform = () => {
               <BookOpen className="w-8 h-8 text-blue-600" />
               <span className="text-2xl font-bold">{getText('appName')}</span>
             </div>
-           <nav className="hidden md:flex gap-6 items-center">
-  <button onClick={() => setCurrentPage('home')} className={currentPage === 'home' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
-    {getText('home')}
-  </button>
-  <button onClick={() => setCurrentPage('courses')} className={currentPage === 'courses' || currentPage === 'detail' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
-    {getText('courses')}
-  </button>
-  <button onClick={() => setCurrentPage('about')} className={currentPage === 'about' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
-    {getText('about')}
-  </button>
-  <a 
-    href="https://www.youtube.com/@vanngekli374" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition flex items-center gap-2"
-  >
-    <Video className="w-5 h-5" />
-    YouTube
-  </a>
-</nav>
+            <nav className="hidden md:flex gap-6 items-center">
+              <button onClick={() => setCurrentPage('home')} className={currentPage === 'home' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+                {getText('home')}
+              </button>
+              <button onClick={() => setCurrentPage('courses')} className={currentPage === 'courses' || currentPage === 'detail' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+                {getText('courses')}
+              </button>
+              <button onClick={() => setCurrentPage('about')} className={currentPage === 'about' ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'}>
+                {getText('about')}
+              </button>
+              <a 
+                href="https://www.youtube.com/@vanngekli374" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition flex items-center gap-2"
+              >
+                <Video className="w-5 h-5" />
+                YouTube
+              </a>
+            </nav>
             <div className="flex gap-2">
               <button onClick={() => setLanguage('en')} className={language === 'en' ? 'px-3 py-1 bg-blue-600 text-white rounded' : 'px-3 py-1 text-gray-600'}>EN</button>
               <button onClick={() => setLanguage('ja')} className={language === 'ja' ? 'px-3 py-1 bg-blue-600 text-white rounded' : 'px-3 py-1 text-gray-600'}>日本語</button>
@@ -215,21 +196,23 @@ const EduPlatform = () => {
             </div>
           </div>
         )}
+
         {/* YouTube Channel Section */}
-<div className="bg-white p-10 rounded-3xl shadow-xl mb-16 text-center">
-  <h2 className="text-5xl font-bold mb-6">{getText('youtubeTitle')}</h2>
-  <p className="text-xl mb-8 text-gray-600">{getText('youtubeDescription')}</p>
-  <a 
-    href="https://www.youtube.com/@vanngekli374" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl hover:bg-red-700 transition text-xl font-bold"
-  >
-    <Video className="w-6 h-6" />
-    {getText('visitYoutube')}
-  </a>
-  <p className="mt-4 text-gray-500">{getText('subscriberCount')}</p>
-</div>
+        <div className="bg-white p-10 rounded-3xl shadow-xl mb-16 text-center">
+          <h2 className="text-5xl font-bold mb-6">{getText('youtubeTitle')}</h2>
+          <p className="text-xl mb-8 text-gray-600">{getText('youtubeDescription')}</p>
+          <a 
+            href="https://www.youtube.com/@vanngekli374" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl hover:bg-red-700 transition text-xl font-bold"
+          >
+            <Video className="w-6 h-6" />
+            {getText('visitYoutube')}
+          </a>
+          <p className="mt-4 text-gray-500">{getText('subscriberCount')}</p>
+        </div>
+
         {currentPage === 'courses' && (
           <div>
             <h1 className="text-5xl font-bold mb-10">{getText('courses')}</h1>
@@ -277,4 +260,4 @@ const EduPlatform = () => {
   );
 };
 
-export default EduPlatform; 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+export default EduPlatform;
