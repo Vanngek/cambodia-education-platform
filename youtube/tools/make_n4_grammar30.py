@@ -170,16 +170,20 @@ SOUNDS = {
 }
 
 
-def build(out_dir):
+def build(out_dir, render=True):
     frames = os.path.join(out_dir, "frames")
     os.makedirs(frames, exist_ok=True)
     timeline, chapters = [], []
     clock = [0.0]
 
-    def add(img, dur, sound=None):
+    tags = []
+
+    def add(img, dur, sound=None, tag=None):
         p = os.path.join(frames, f"{len(timeline):04d}.png")
-        img.save(p)
+        if render:
+            img.save(p)
         timeline.append((p, dur, sound, clock[0]))
+        tags.append({"tag": tag, "start": clock[0], "dur": dur})
         clock[0] += dur
 
     def chapter(label):
@@ -187,31 +191,37 @@ def build(out_dir):
         chapters.append(f"{s // 60}:{s % 60:02d} {label}")
 
     chapter("はじめに")
-    add(centered_slide("JLPT N4 よく出る文法30", ["試験まえに これだけ チェック！", "やさしい日本語　＋　English"]), 6, "start")
+    add(centered_slide("JLPT N4 よく出る文法30", ["試験まえに これだけ チェック！", "やさしい日本語　＋　English"]), 6, "start", "title")
     add(centered_slide("この動画の 見かた", [
         "① 文法と れいぶんを 読む",
         "② クイズ：5秒で 答えを 考える",
-        "③ こたえを 見て、まちがえたら メモ！"]), 9)
+        "③ こたえを 見て、まちがえたら メモ！"]), 9, None, "howto")
     sections = [(0, 10), (10, 20), (20, 30)]
     for a, b in sections:
         chapter(f"{a + 1}〜{b}（{ITEMS[a][0]} 〜 {ITEMS[b - 1][0]}）")
-        add(centered_slide(f"No.{a + 1} 〜 No.{b}", [f"{ITEMS[a][0]} 〜 {ITEMS[b - 1][0]}"], title_color=ORANGE), 3, "start")
+        add(centered_slide(f"No.{a + 1} 〜 No.{b}", [f"{ITEMS[a][0]} 〜 {ITEMS[b - 1][0]}"], title_color=ORANGE), 3, "start", f"section:{a + 1}-{b}")
         for i in range(a, b):
             n, item = i + 1, ITEMS[i]
-            add(explain_slide(n, item), 14)
-            add(quiz_slide(n, item), 4)
+            add(explain_slide(n, item), 14, None, f"explain:{i}")
+            add(quiz_slide(n, item), 4, None, f"quiz:{i}")
             for c in range(5, 0, -1):
-                add(quiz_slide(n, item, count=c), 1, "last" if c == 1 else "tick")
-            add(quiz_slide(n, item, reveal=True), 8, "ding")
+                add(quiz_slide(n, item, count=c), 1, "last" if c == 1 else "tick", f"quiz:{i}")
+            add(quiz_slide(n, item, reveal=True), 8, "ding", f"answer:{i}")
     chapter("まちがえやすい ペア")
-    add(centered_slide("まちがえやすい ペア", ["さいごに、にている 文法を くらべよう"], title_color=ORANGE), 4, "start")
-    for title, lines in PAIRS:
-        add(pair_slide(title, lines), 20 if len(lines) <= 2 else 26)
+    add(centered_slide("まちがえやすい ペア", ["さいごに、にている 文法を くらべよう"], title_color=ORANGE), 4, "start", "pairs_intro")
+    for k, (title, lines) in enumerate(PAIRS):
+        add(pair_slide(title, lines), 20 if len(lines) <= 2 else 26, None, f"pair:{k}")
     chapter("おわりに")
     add(centered_slide("おつかれさまでした！", [
         "まちがえた 文法は もう一度 見よう",
         "12月6日、がんばってください！",
-        "チャンネル登録 ＆ 結果を コメントで 教えてね"]), 14, "ding")
+        "チャンネル登録 ＆ 結果を コメントで 教えてね"]), 14, "ding", "outro")
+
+    import json
+    with open(os.path.join(out_dir, "timeline.json"), "w", encoding="utf-8") as f:
+        json.dump(tags, f, ensure_ascii=False, indent=0)
+    if not render:
+        return tags
 
     total = clock[0]
     # concat list
@@ -245,4 +255,5 @@ def build(out_dir):
 
 
 if __name__ == "__main__":
-    build(os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else "youtube/output"))
+    build(os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else "youtube/output"),
+          render="--timeline-only" not in sys.argv)
